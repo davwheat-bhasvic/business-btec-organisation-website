@@ -1,0 +1,315 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #009fe0;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 18px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+header {
+  height: 64px;
+  position: relative;
+  z-index: 1;
+
+  .minor-shadow();
+
+  #header-inner {
+    max-width: 900px;
+    padding: 8px 24px;
+
+    height: 100%;
+  }
+
+  #logo {
+    height: 100%;
+  }
+}
+
+#hero {
+  display: grid;
+  grid-template-columns: 1fr;
+
+  align-items: center;
+  justify-items: center;
+
+  .minor-shadow();
+
+  h1,
+  span {
+    width: 100%;
+    text-align: center;
+    padding: 8px 16px;
+    font-size: 8rem;
+    line-height: 1;
+    color: white;
+    font-weight: bold;
+    margin: 0;
+
+    @media (max-width: 768px) {
+      font-size: 6rem;
+    }
+  }
+
+  h1 {
+    -webkit-text-stroke: black 12px;
+  }
+
+  @media (max-width: 600px) {
+    h1,
+    span {
+      font-size: 5rem;
+    }
+
+    h1 {
+      -webkit-text-stroke-width: 8px;
+    }
+  }
+
+  img {
+    width: 100%;
+    height: 400px;
+    max-height: 50vh;
+    min-height: 150px;
+    object-fit: cover;
+    object-position: 50% 35%;
+  }
+
+  img,
+  h1,
+  span {
+    grid-row: 1 / 2;
+    grid-column: 1 / 2;
+  }
+}
+
+main {
+  max-width: 800px;
+  margin: auto;
+  padding: 24px;
+  padding-top: 0;
+  margin-top: -24px;
+
+  .card {
+    + .card {
+      margin-top: 48px;
+    }
+
+    border-radius: 8px;
+    overflow: hidden;
+
+    .large-shadow();
+
+    display: grid;
+    grid-template-columns: 40fr 60fr;
+
+    background: white;
+
+    img {
+      max-width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    > div {
+      background: white;
+      padding: 16px 24px;
+    }
+
+    &.reversed {
+      @media (min-width: 600.01px) {
+        grid-template-columns: 60fr 40fr;
+
+        img {
+          grid-column: ~"2 / 3";
+          grid-row: ~"1 / 2";
+
+          // Fix Chrome adding white slither to right hand side of image
+          transform: translateX(1px);
+        }
+
+        > div {
+          grid-column: ~"1 / 2";
+          grid-row: ~"1 / 2";
+        }
+      }
+    }
+
+    @media (max-width: 600px) {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto auto;
+    }
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  margin-bottom: 0.125em;
+}
+
+p {
+  line-height: 1.3;
+}
+
+.minor-shadow() {
+  box-shadow: 0px 0.3px 2px rgba(0, 0, 0, 0.02),
+    0px 0.7px 4.8px rgba(0, 0, 0, 0.028), 0px 1.4px 9px rgba(0, 0, 0, 0.035),
+    0px 2.5px 16.1px rgba(0, 0, 0, 0.042), 0px 4.6px 30.1px rgba(0, 0, 0, 0.05),
+    0px 11px 72px rgba(0, 0, 0, 0.07);
+}
+
+.large-shadow() {
+  box-shadow: 0px 0.8px 1.7px rgba(0, 0, 0, 0.028),
+    0px 1.9px 3.9px rgba(0, 0, 0, 0.041), 0px 3.4px 7px rgba(0, 0, 0, 0.051),
+    0px 5.6px 11.6px rgba(0, 0, 0, 0.059), 0px 9.3px 19px rgba(0, 0, 0, 0.069),
+    0px 16.2px 33.3px rgba(0, 0, 0, 0.082), 0px 35px 72px rgba(0, 0, 0, 0.11);
+}
+
+a:any-link {
+  color: var(--primary);
+  font-weight: bold;
+}
+
+.key-people {
+  margin-top: 64px;
+
+  h2 {
+    font-size: 2em;
+    margin-bottom: 32px;
+  }
+
+  ul {
+    display: grid;
+    grid-auto-flow: column;
+    gap: 48px;
+    width: 100%;
+
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+    align-items: center;
+
+    li {
+      display: contents;
+    }
+
+    .portrait {
+      border-radius: 50%;
+      .minor-shadow();
+      width: 100%;
+    }
+
+    grid-template-columns: 1fr;
+
+    @media (max-width: 600px) {
+      grid-auto-flow: row;
+
+      .person {
+        display: block;
+        background-color: #fff;
+        padding: 12px;
+        border-radius: 12px;
+        .minor-shadow();
+      }
+
+      .portrait {
+        display: block;
+        margin: 0 auto;
+        --size: 192px;
+        width: var(--size);
+        height: var(--size);
+        margin: 0 auto;
+        margin-bottom: 16px;
+      }
+
+      .bio {
+        box-shadow: none !important;
+      }
+
+      .name,
+      .role {
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 450px) {
+      .portrait {
+        --size: 154px;
+      }
+    }
+
+    @media (min-width: 600.00001px) {
+      grid-template-columns: 1fr 0.5fr 1fr;
+
+      li {
+        .portrait {
+          grid-column: ~"1 / 2";
+        }
+
+        .about {
+          grid-column: ~"2 / 4";
+        }
+
+        &:nth-child(2n - 1) {
+          .portrait {
+            grid-column: ~"3 / 4";
+          }
+          .about {
+            grid-column: ~"1 / 3";
+          }
+        }
+      }
+    }
+
+    .name {
+      color: var(--primary);
+      text-transform: uppercase;
+      font-weight: bold;
+      font-size: 1.5em;
+      margin-top: 0;
+      margin-bottom: 8px;
+    }
+
+    .role {
+      font-size: 0.8em;
+      color: #999;
+      text-transform: uppercase;
+      margin-top: 0;
+      margin-bottom: 16px;
+    }
+
+    .bio {
+      padding: 12px;
+      border-radius: 12px;
+      margin: 0;
+      .minor-shadow();
+    }
+  }
+}
+
+blockquote {
+  font-style: italic;
+
+  .author {
+    display: block;
+  }
+}
+
+.financials {
+  margin-top: 64px;
+}

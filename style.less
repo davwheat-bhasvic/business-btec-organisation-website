@@ -92,6 +92,10 @@ header {
   }
 }
 
+h2 + h3 {
+  margin-top: 12px;
+}
+
 main {
   max-width: 800px;
   margin: auto;
@@ -118,6 +122,10 @@ main {
       max-width: 100%;
       height: 100%;
       object-fit: cover;
+
+      &.contain {
+        object-fit: contain;
+      }
     }
 
     > div {
@@ -125,7 +133,7 @@ main {
       padding: 16px 24px;
     }
 
-    &.reversed {
+    &:nth-child(even) {
       @media (min-width: 600.01px) {
         grid-template-columns: 60fr 40fr;
 
